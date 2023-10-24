@@ -25,5 +25,6 @@
     float: none;
 }
 .card:hover{
+    transition-duration: 500ms;
     background-color: #5dc7ec;
 }
