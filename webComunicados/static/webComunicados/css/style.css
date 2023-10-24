@@ -16,9 +16,14 @@
     width: 100%;
     max-width: 500vw;
 }
-#tarjetas{
-    margin-left: 100px;
+#separacion{
+    width: 100%;
+}
+.card{
+    margin: auto;
+    margin-bottom: 10px;
+    float: none;
 }
 .card:hover{
-    background-color: #000000;
+    background-color: #5dc7ec;
 }

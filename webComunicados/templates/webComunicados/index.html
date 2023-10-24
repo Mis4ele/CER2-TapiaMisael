@@ -65,27 +65,28 @@
             <button type="submit" class="btn btn-primary col">Filtrar</button>
         </div>
     </form>
-    <p>Mostrando: {{ departamento }}</p>
 </div>
+<br>
 
 <!-- Tarjetas de comunicados -->
-<div id="tarjetas" class="container-fluid">
-    <div class="row row-cols-3 row-cols-md-3 g-4">
-        <div class="col">
-            {% for Comunicado in Comunicados %}
-            {% if Comunicado.entidad.nombre == departamento or departamento == "Todos los departamentos" %}
-            <div class="card" style="width: 18rem;">
+<div id="separacion" class="container-fluid">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
+        {% for Comunicado in Comunicados %}
+        {% if Comunicado.visible %}
+        {% if Comunicado.entidad.nombre == departamento or departamento == "Todos los departamentos"%}
+        <div class="col mx-auto">
+            <div class="card h-100" style="width: 17rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ Comunicado.titulo }}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">{{ Comunicado.entidad }}</h6>
                     <p class="card-text">{{ Comunicado.detalle_corto }}</p>
-                    <a href="#" class="card-link">{{ Comunicado.fecha_publicacion }}</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <small class="text-body-secondary">{{ Comunicado.fecha_publicacion }}</small>
                 </div>
             </div>
-            {% endif %}
-            {% endfor %}
         </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
     </div>
 </div>
 
