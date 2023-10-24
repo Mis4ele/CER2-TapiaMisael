@@ -1,0 +1,73 @@
+{% extends "webComunicados/base.html" %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 text-center">
+                <a href="https://usm.cl" target="_blank">
+                    <img src="{% static 'webComunicados/img/logo_universidad.png' %}" alt="Logo Universidad" width="100%">
+                </a>
+            </div>
+            <div class="col-lg-10">
+                <div class="row">
+                    <br><br>
+                </div>
+                <div class="row">
+                    <h1>Sistema Integrado de Notificaciones</h1>
+                </div>
+                <div class="row">
+                    <hr>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'admin:index' %}">Administracion</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<br>
+
+<div id="filtrador" class="container-fluid col">
+    <form class="row" method="post">
+        {% csrf_token %}
+        <select class="form-select me-2" name="getlista" aria-label="Default select">
+            <option selected>Abrir menu de seleccion</option>
+            <option value="test 1">Uno</option>
+            <option value="test 2">Dos</option>
+            <option value="test 3">Tres</option>
+        </select>
+        <button type="submit" class="btn btn-primary col">Filtrar</button>
+    </form>
+    <p>El valor seleccionado es: {{ testing }}</p>
+</div>
+
+<div class="container-fluid">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
