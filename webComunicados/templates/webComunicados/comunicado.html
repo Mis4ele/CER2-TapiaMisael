@@ -1,0 +1,54 @@
+{% extends "webComunicados/base.html" %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 text-center">
+                <a href="https://usm.cl" target="_blank">
+                    <img id="logo_universidad" src="{% static 'webComunicados/img/logo_universidad.png' %}" alt="Logo Universidad">
+                </a>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <br><br>
+                </div>
+                <div class="row hideifsmall">
+                    <h1>Sistema Integrado de Notificaciones</h1>
+                </div>
+                <div class="row">
+                    <hr>
+                </div>
+            </div>
+            <div class="col-lg-2 text-center">
+                <img id="logo_entidad" src="{% static logo %}" alt="LogoEntidad">
+            </div>
+        </div>
+    </div>
+</header>
+<br>
+
+<!-- Tarjeta de comunicado -->
+<div class="container-fluid">
+    <div class="row">
+        <a id="sinDecoracion" href="{% url 'index' %}">
+            <div class="col mx-auto">
+                <div id="comunicado" class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title mb-2">{{ comunicado.titulo }}</h5>
+                        <h4 class="card-subtitle mb-4 text-body-secondary">{{ comunicado.entidad }}</h6>
+                        <h5 class="card-text mb-4">{{ comunicado.detalle }}</h5>
+                        <small class="text-body-secondary">{{ comunicado.fecha_publicacion }}</small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

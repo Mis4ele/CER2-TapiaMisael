@@ -20,5 +20,6 @@ from webComunicados import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('comunicado/', views.comunicado, name='comunicado'),
     path('admin/', admin.site.urls),
 ]

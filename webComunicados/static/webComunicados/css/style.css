@@ -4,14 +4,24 @@
     width:100%;
     max-width:200px;
 }
+#logo_entidad{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    width:100%;
+    max-width:190px;
+    border-radius: 20px;
+}
+#comunicado{
+    width: 70%;
+}
 @media screen and (max-width: 991px) {
     .hideifsmall {
         display: none;
     }
 }
-/* .form-select{
-    width: 70%;
-} */
+#sinDecoracion{
+    text-decoration: none;
+}
 #filtrador{
     width: 100%;
     max-width: 500vw;

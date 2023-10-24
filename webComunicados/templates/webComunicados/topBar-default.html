@@ -1,0 +1,35 @@
+{% load static %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 text-center">
+            <a href="https://usm.cl" target="_blank">
+                <img id="logo_universidad" src="{% static 'webComunicados/img/logo_universidad.png' %}" alt="Logo Universidad">
+            </a>
+        </div>
+        <div class="col-lg-10">
+            <div class="row">
+                <br><br>
+            </div>
+            <div class="row hideifsmall">
+                <h1>Sistema Integrado de Notificaciones</h1>
+            </div>
+            <div class="row">
+                <hr>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                    <a class="nav-link" href="{% url 'admin:index' %}">Administracion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

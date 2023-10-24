@@ -4,7 +4,7 @@ from .models import Entidad, Comunicado
 # Create your views here.
 
 def index(request):
-    title = "Comunicados"
+    title = "SIN - Inicio"
     Comunicados = Comunicado.objects.all().order_by('-fecha_publicacion')
 
     if request.method == 'POST':
@@ -20,3 +20,22 @@ def index(request):
     }
 
     return render(request,'webComunicados/index.html', data)
+
+def comunicado(request):
+    title = "SIN - Comunicado"
+    Comunicados = Comunicado.objects.all()
+    idComunicado = request.GET.get('idComunicado')
+    comunicado = "No se ha encontrado ese comunicado."
+
+    for comu in Comunicados:
+        if str(comu.id) == str(idComunicado):
+            comunicado = comu
+            break
+
+    data = {
+        "title": title,
+        "comunicado": comunicado,
+        "logo": '/'.join(str(comunicado.entidad.logo).split('/')[2:]),
+    }
+
+    return render(request,'webComunicados/comunicado.html', data)
