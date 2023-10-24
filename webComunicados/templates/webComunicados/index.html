@@ -11,14 +11,14 @@
         <div class="row">
             <div class="col-lg-2 text-center">
                 <a href="https://usm.cl" target="_blank">
-                    <img src="{% static 'webComunicados/img/logo_universidad.png' %}" alt="Logo Universidad" width="100%">
+                    <img id="logo_universidad" src="{% static 'webComunicados/img/logo_universidad.png' %}" alt="Logo Universidad">
                 </a>
             </div>
             <div class="col-lg-10">
                 <div class="row">
                     <br><br>
                 </div>
-                <div class="row">
+                <div class="row hideifsmall">
                     <h1>Sistema Integrado de Notificaciones</h1>
                 </div>
                 <div class="row">
@@ -44,28 +44,47 @@
 </header>
 <br>
 
-<div id="filtrador" class="container-fluid col">
+<div id="filtrador" class="container-fluid">
     <form class="row" method="post">
         {% csrf_token %}
-        <select class="form-select me-2" name="getlista" aria-label="Default select">
-            <option selected>Abrir menu de seleccion</option>
-            <option value="test 1">Uno</option>
-            <option value="test 2">Dos</option>
-            <option value="test 3">Tres</option>
-        </select>
-        <button type="submit" class="btn btn-primary col">Filtrar</button>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <select class="form-select mb-2" name="formDepto" aria-label="Default select">
+                <option selected>{{ departamento }}</option>
+                {% if departamento != "Todos los departamentos" %}
+                <option value="Todos los departamentos">Todos los departamentos</option>
+                {% endif %}
+                {% for entidad in Entidades %}
+                {% if departamento != entidad.nombre %}
+                <option value="{{entidad.nombre}}">{{entidad.nombre}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary col">Filtrar</button>
+        </div>
     </form>
-    <p>El valor seleccionado es: {{ testing }}</p>
+    <p>Mostrando: {{ departamento }}</p>
 </div>
 
-<div class="container-fluid">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+<!-- Tarjetas de comunicados -->
+<div id="tarjetas" class="container-fluid">
+    <div class="row row-cols-3 row-cols-md-3 g-4">
+        <div class="col">
+            {% for Comunicado in Comunicados %}
+            {% if Comunicado.entidad.nombre == departamento or departamento == "Todos los departamentos" %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ Comunicado.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ Comunicado.entidad }}</h6>
+                    <p class="card-text">{{ Comunicado.detalle_corto }}</p>
+                    <a href="#" class="card-link">{{ Comunicado.fecha_publicacion }}</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

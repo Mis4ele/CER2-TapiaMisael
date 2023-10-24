@@ -1,17 +1,22 @@
 from django.shortcuts import render
+from .models import Entidad, Comunicado
 
 # Create your views here.
 
 def index(request):
     title = "Comunicados"
+    Comunicados = Comunicado.objects.all().order_by('-fecha_publicacion')
+
     if request.method == 'POST':
-        testing = request.POST.get('getlista')
+        departamento = request.POST.get('formDepto')
     else:
-        testing = 'nada'
+        departamento = 'Todos los departamentos'
 
     data = {
         "title": title,
-        "testing": testing,
+        "Comunicados": Comunicados,
+        "Entidades": Entidad.objects.all(),
+        "departamento": departamento,
     }
 
     return render(request,'webComunicados/index.html', data)
